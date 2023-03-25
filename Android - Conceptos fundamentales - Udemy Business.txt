@@ -1,0 +1,107 @@
+Activity = Pantalla en Android
+Package Name = Forma en la que Google reconoce e identifica a una aplicación en la playstore
+El formato del package name es: com.{nombre_compañia}.{nombre_proyecto}
+SDK = Kit de desarrollo de software. 
+Minimum SDK = La versión minima de Android en la que se podrá correr nuestra aplicación
+De acuerdo a la versión que escojamos vamos a soportar una porción mayor o menor de dispositivos Android en el mercado. Logicamente el trade off acá es que mientras mas antigua la versión mayor soporte de dispositivos pero menor cantidad de capacidades para nuestra app. 
+
+Para comenzar a crear una app desde cero con Android Studio es tan simple como: 
+1- Abrirlo y seleccionar new project
+2- Elegir el template apropiado a la app que vamos a construir. Si ninguno sirve elegimos el "empty activity" para arrancar desde cero. 
+3- Ponemos nombre al proyecto y al paquete (como se verá en la marketplace), elegimos el minimum SDK y creamos. 
+4- Listo tenemos nuestra maqueta de aplicación vacia lista para comenzar a llenarla. 
+5- Desde el SDK Manager vamos a realizar algunas configuraciones antes de arrancar. Chequear que el ultimo "Android SDK" (sección SDK Platforms) lo tengamos "Installed" y sino hacerlo seleccionando los ultimos (o los que nos  interesen) y luego presionando "apply"
+6- Luego vamos a la sección "SDK Tools" e instalamos: Android SDK Build-Tools, Android Emulator, Android SDK Platform-Tools, Android SDK Tools (para Marzo 2023 obsoleto) y Intel x86 Emulator Accelerator (HAXM installer)
+
+----------------------------------------------
+
+¿Que vemos con la aplicación creada?
+1- A la izquierda todo el directorio completo de nuestro proyecto
+2- Abiertos para modificar o solo leer dos archivos: el MainActiviy.kt que es el archivo donde vamos a programar toda la logica de nuestra aplicación y el activity_main.xml que es donde vamos a encontrar como se va a ver nuestra pantalla. 
+3- Partes del directorio importantes al arrancar: carpeta "java" que es donde estará nuestro codigo y carpeta "res" que es donde estarán nuestros recursos. Por ejemplo nuestras pantallas estarán dentro de la sub carpeta "layout" de la carpeta "res", allí es donde se aloja el file activity_main.xml que mencioné en el punto 2
+
+----------------------------------------------
+
+¿Como creamos un emulador de celular android donde probar nuestras aplicaciones? 
+
+1- Buscamos en el menu del proyecto abierto el logo del AVD Manager (Android Virtual Device Manager) y lo seleccionamos. Ahora se llama solo "Device Manager" y tiene dentro una division entre "Virtual" o "Physical"
+2. Dentro del "DM" voy a seleccionar la opción de "Create Device" y allí puedo simular un "phone", "tv" "wear OS", "tablet" y "automotive" 
+3- Escojo la category y el nombre del dispositivo que deseo simular. Ejemplo Pixel 2
+4- Luego decido que System Image (SI) de Android quiero que tenga ese dispositivo. Si no lo tengo debo instalarlo desde la misma pantalla. Ejemplo: Android 11 R (El que tengo en mi Xiaomi 9T Pro) o el Android 9 Pie que fue muy popular y es el que voy a estar usando en esta ocasión. 
+5- En la siguiente pantalla puedo decidir si al comenzar el emulador va a comenzar de forma vertical u horizontal. 
+6- Le doy finish y  eso me va a generar mi primer emulador. Puedo crear todos los que desee para testear mi app en distintos devices pero teniendo en cuenta que cada emulador pesa demasiado, por lo que si puedo trabajar con 1 solo mejor aún.  
+7- Dandole "Play" desde el "DM" vamos a encender el device creado. Tmb se puede dar play dsd el manu principal seleccionando el device en el desplegable y luego presionando el boton de "run app" (logo de Play tradicional) que se ubica a su derecha. 
+
+----------------------------------------------
+
+¿Como emulamos nuestro programa en un dispositivo real? 
+
+1- En nuestro device simulado vamos a configuraciones (ruedita en opciones) y allí buscamos "acerca del teléfono" que en el emulador es "acerca del dispositivo emulado"
+2- una vez aquí debemos buscar "número de compilación" (En Xiaomi se llama "Versión MIUI" y está en "Acerca del telefono")y empezar a darle click y nos va a aparecer un tipo contador que dice que estamos a "3, 2, 1, un paso de ser programador" y "ya eres programador".
+3- Una vez vimos ese mensaje... Vamos para atras y dentro de "Sistema" presionamos sobre "Avanzado" donde vamos a encontrar una nueva opción que dice "Opciones para programadores", presionamos... (En Xiaomi debería estar debajo de "Acerca del telefono" o en su defecto lo buscamos con la lupita y lo encontraremos.)
+4- Allí debemos garantizar que estén activadas las siguientes opciones: El "Activado", "Permanecer Activo", "Depuración por USB" o "Wireless debugging" (Es la que nos va a permitir que la computadora nos identifique el celular que acabamos de configurar). Clave tener también activado el permiso "Instalar vía USB" mas allá de que el emparejamiento sea Wi Fi para que Android Studio pueda instalar la .apk en nuestro device. 
+5- Activado todo lo anterior (fundamentalmente la opcion de "Depuración por USB") ya vamos a encontrar en "Logcat" (Una de las opcinoes del panel inferior de Android Studio la posibilidad de cambiar de dispositivos, incluyendo a los celulares reales).
+6- Vamos entonces al DM, alli ponemos incorporar un nuevo device, esta vez "physical" y seguimos en el celular fisico la siguiente ruta: Developer Options -> Wireless debugging -> Pair using QR code -> Escaneamos el QR de Android Studio y lo tendremos cargado para probar app en un dispositivo real Android mientras estén unidas a la misma red wifi. Para ello debemos apretar el boton de "run app" señalando al device fisico apareado. 
+
+----------------------------------------------
+
+Importante: Para armar los repos de un proyecto Android con Kotlin debemos arrancarlos desde la carpeta padre que es la que lleva el nombre del proyecto. En este caso "Hello World". Dentro de ella va a estar la carpeta "app" que es la que nos muestra android studio y el archivo .gitignore por ejemplo. 
+
+------------------------------------------------
+
+En Android Studio / Kotlin cada "Activity" (pantalla) de nuestra app va a tener dos archivos: 
+1- Un {MainActivity}.kt --> File Kotlin que tiene nuestra logica del programa
+2- Un {activity_mian}.xml --> File Xml que tiene el contenido de nuestro programa. 
+
+Todo lo que vemos en una pantalla de Android se lo conoce como "views":
+1- Image views -> Las imagenes
+2- Text views -> Los textos en pantalla
+
+El archivo de nuestras views es el file .xml, que al abrirlo lo veremos como una imagen de nuestra pantalla. Y no veremos el codigo ni lo podremos editar salvo que toquemos en "Split" sobre el margen superior derecho de la pantalla. 
+
+Podemos editar el diseño a traves del codigo (buena práctica) o si lo preferimos a traves de su interface visual (Buenisima posibilidad que brinda Android Studio pero no Intellij IDEA por ejemplo) 
+
+Por ejemplo dentro de la etiqueta <TextView... vamos a encontrar el valor android:text("lalala") -> Allí es donde debemos poner el texto que vemos en nuestra aplicación. Dentro de <TextView... vamos a encontrar muchas otras etiquetas del tipo android:{atributo} que nos permitirán dejar el diseño como nosotros deseamos. Por ejemplo:
+
+android:textSize="24sp"...
+
+Desde aquí se hace todo el diseño. Podemos armar el texto del cuerpo de la app (la sugerencia de que va por ejemplo se llama "android:hint") en la sección <EditText...
+
+Podemos armar botones de nuestras pantallas con la etiqueta <Button...
+
+(Ver para entender mas detalles del diseño de nuestra "Activity" el file "activity_main.xml")
+
+---------------------------------------------
+
+Cuando desarrollamos aplicaciones Android en Android Studio... Los archivos .xml reemplazan a los archivos HTML y CSS del diseño web tradicional. ¿Es una afirmación verdadera o falsa a tu criterio? 
+
+En cierto modo, la afirmación es verdadera, ya que en el desarrollo de aplicaciones Android en Android Studio, los archivos .xml se utilizan para definir la estructura y el diseño de la interfaz de usuario, de manera similar a cómo se utilizan HTML y CSS en el diseño web tradicional.
+
+Sin embargo, hay algunas diferencias significativas entre los archivos .xml y HTML/CSS. En Android, los archivos .xml se utilizan principalmente para definir la jerarquía de vistas y widgets que se utilizarán en la interfaz de usuario, mientras que en HTML se utilizan etiquetas para definir la estructura y el contenido de una página web.
+
+Además, mientras que CSS se utiliza para aplicar estilos y diseños a elementos específicos de una página web, en Android Studio, se utilizan archivos .xml separados para definir los estilos y diseños de la interfaz de usuario.
+
+En resumen, aunque hay similitudes entre el uso de archivos .xml en Android Studio y HTML/CSS en el diseño web, cada plataforma tiene sus propias convenciones y diferencias significativas en cuanto a su uso.
+
+--------------------------------------------
+
+LinearLayout (Segunda etiqueta del proyecto solo por debajo de la etiqueta principal <?xml ...) con android:orientation="vertical" de .xml (para Android Studio) sería el equivalente a una ordenación del "display: block" en CSS para desarrollo web desktop.
+
+match_parent: Ocupa todo el espacio disponible del ancho o el largo nuestra Activity. wrap_content ajusta el ancho o largo a lo ocupado por el contenido. Sino también podemos setear el espacio en pixeles dependientes (del tamaño del dispositivo) que se plantean como por ej: android:layout_width="2000dp"
+
+En internet se puede buscar por ejemplo, ¿Que tipo de View en Android Studio se puede usar para un boton de confirmación? 
+
+Los margins & padding se pueden manipular de forma conjunta o de forma separada igual que en CSS.
+
+16dp depending pixels es como un valor de espaciamiento por default en Android.
+
+Todas las labels que comienzan con android:{type} se van a visualizar en la app productiva. Si quiero testear en modo desarrollo como se visualiza algo puedo hacerlo usando alguna tools:{type}. En el caso por ejemplo de la respuesta que da la app sobre la edad que tendrías como perro sería tools:text="Tu edad canina es de 120 años"
+
+-------------------------------------------
+
+Para desarrollar la logica de "Mi edad canina" debemos identificar cada "view" en mi XML con un "id" para luego poder escuchar los eventos que ocurren sobre el desde nuestro archivo kotlin y manejar nuestra aplicación como deseemos. 
+
+
+
+
+
