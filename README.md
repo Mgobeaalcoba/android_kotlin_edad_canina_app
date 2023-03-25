@@ -32,7 +32,7 @@ git clone https://github.com/Mgobeaalcoba/android_app_mi_edad_canina_kotlin.git
 ```
 También puedes descargarla como Zip en caso de que aún no sepas usar Git & Github
 
-**Paso 2: Abre el proyecto en Android Studio **
+**Paso 2: Abre el proyecto en Android Studio**
 
 Abre Android Studio y selecciona "Open project". Luego busca en tu directorio donde clonaste (o descargaste y descomprimiste) el proyecto.
 Selecciona la carpeta raiz del mismo y dale aceptar. Listo! Ya estás en el proyecto. Y puedas ver como está compuesto. Sus archivos Kotlin 
