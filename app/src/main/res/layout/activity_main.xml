@@ -1,66 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- match_parent: Ocupa todo el espacio disponible
-    del ancho o el largo nuestra Activity. wrap_content ajusta
-    el ancho o largo a lo ocupado por el contenido.
-    -->
+    <data>
 
-    <ImageView
+    </data>
 
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dog_meme"
-        android:adjustViewBounds="true"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="¿Cuantos años tienens?"
-        android:padding="16dp"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"/>
-    
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Tu edad"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        tools:text="Tu edad canina es de 120 años" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Calcular"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
 
-    <!-- Alternative button:
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dog_meme"
+            android:adjustViewBounds="true" />
 
-    <Button
-        android:id="@+id/btn_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmar"
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        android:fontFamily="casual"
-        android:padding="12dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question_age"
+            android:padding="16dp"
+            android:textSize="24sp"
+            android:textColor="@android:color/black" />
 
-    -->
+        <EditText
+            android:id="@+id/age_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:inputType="number"
+            android:hint="@string/input_age" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textColor="@android:color/black"
+            android:gravity="center"
+            tools:text="Tu edad canina es de 120 años" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/button" />
+
+
+        <!-- Alternative button:
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmar"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:fontFamily="casual"
+            android:padding="12dp" />
+
+        -->
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_age">¿Cuantos años tienens?</string>
+    <string name="input_age">Tu edad</string>
+    <string name="button">Calcular</string>
+    <string name="you_must_insert_your_age">Debes insertar tu edad</string>
+    <string name="result_string">Tu edad canina es de %d años</string>
+</resources>

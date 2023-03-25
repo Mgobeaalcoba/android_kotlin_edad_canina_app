@@ -101,6 +101,134 @@ Todas las labels que comienzan con android:{type} se van a visualizar en la app 
 
 Para desarrollar la logica de "Mi edad canina" debemos identificar cada "view" en mi XML con un "id" para luego poder escuchar los eventos que ocurren sobre el desde nuestro archivo kotlin y manejar nuestra aplicación como deseemos. 
 
+Metodo onCreate de MainActivity: 
+En este método se ejecuta automáticamente cuando esta activity se crea, es decir, cuando abrimos la
+aplicación, se crea esta pantalla y automáticamente se ejecuta.
+
+Este metodo lo que hace es que establece que determinado layout (en este caso "activity_main") es el que va a pertenecer a esta Activity y por lo tanto el que va a mostarnos en pantalla de nuestro device Android
+
+-------------------------------------------
+
+Uso de los "Log": 
+
+1- Puedo visualizarlos en el logcat
+2- Debo crearlos usando el objeto "Log" con el metodo que corresponda "d" de debug, etc. 
+3- Sirve para ir siguiente por logcat los eventos que ocurren en nuestro programa y detectar posibles errores.
+4- Usos de cada categoria (metodos de Log): 
+"debug" y "verbose": Para transmitir información o comentarios de actividad
+"info" y "warm": Para transmitir alertas que pueden llegar a romper nuestra app
+"error": Para transmitir errores que rompen nuestra app
+5- Se llaman como Log.v, Log.d, Log.i, Log.w, Log.e
+
+------------------------------------------
+
+Una opción para mostrarles mensajes por pantalla al usuario frente a un error son los "Toast":
+
+Ej:
+
+Toast.makeText(this, "Debes insertar tu edad",Toast.LENGTH_SHORT).show()
+
+Argumentos de un Toast: 
+Contexto: A que Activity hacen referencia -> Poniendo this (sin comillas) hacemos que refieran a la activity en la cual estamos escribiendo el codigo. Por ej: MainActivity
+Texto: El mensaje a mostrar
+Duración: Solo 2 opciones: LENGTH_SHORT o LENGTH_LONG
+
+-----------------------------------------
+
+Buenas practicas con Strings: 
+
+1- Debemos guardar todas las Strings en ../res/values/strings.xml para luego invocarlas en activity_main.xml como hicimos con las imagenes. Es decir, dentro del valor de android.text="@string/{nombre_string_guardado}" 
+2- De esta forma evitamos el "hardcodeo" de variables que es considerado una mala practica. 
+3- Los Log´s y las tools no son necesarios guardar como strings en strings.xml. Solo los strings que le vamos a mostrar al usuario. 
+
+-----------------------------------------
+
+Podemos hacer que Android Studio no interprete como errores el Español sin instalar un diccionario. 
+
+1- Boton derecho sobre carpeta "res"
+2- New -> Android Resource Directory
+3- Directory name = "values-es" para español o "values-pt" para portugués. 
+4- Presionamos "Ok". Parece que nada ha cambiado pero...
+5- Con el boton derecho sobre "res" buscamos "Open in" -> "Explorer" para ver que se creo la carpeta "values-es".
+6- Luego con click derecho en "values" creamos un "new" -> "Values Resource File"
+7- Le ponemos de nombre "string.xml" y en directory name ponemos "values-es"
+8- Ya nos muestra la sección de Project una carpeta "strings" dentro de "values" y dentro de ella dos archivos llamados igualmente como "strings.xml"
+9- Al tener dos archivos de strings, dependiendo de que idioma tengamos configurado en el celular nos no lo va a mostrar en español o en ingles. 
+10- Si cambiamos de idioma también va a cambiar lo que nos muestra el celular. 
+
+----------------------------------------
+
+findViewById nos sirve para el objetivo de linkear una view con logica Kotlin. Pero sin embargo es un proceso pesado. Que puede enlentecer nuestra aplicación si la misma es muy grande. Para estos casos existe otra forma de hacerlo que se llama "Data Binding". ¿Por que? 
+
+1- findViewById carga las views en la logica Kotlin en tiempo de ejecución. Es decir, con el programa en marcha. 
+2- dataBinding carga las views en tiempo de compilación. Es decir, antes de comenzar a ejecutar nuestro programa. 
+
+El data binding es algo nuevo de Android. Por lo que muchas aplicaciones aún están utilizando el findViewByID. 
+Por eso es importante conocer ambos. 
+
+¿Que es Gradle? Es el mecanismo que utiliza Android para compilar nuestro codigo y llevarlo a un lenguaje que el celular pueda entender. 
+
+1- Buscamos la carpeta "Gradle Scripts" que está por fuera de "app". 
+2- Dentro de ella buscamos "build.gradle (Module:app)" y lo abrimos.
+3- Y en dicho archivo vamos a agregar:
+. Debajo del ultimo aplly: apply plugin: 'kotlin-kapt'
+. Dentro de android {} y debajo de buildTypes {}:
+
+dataBinding {
+	enabled = true
+}
+
+4- Nos va a pedir autorizacion para sincronizar dataBinding con el proyecto. Lo cual tenemos que aprobar. 
+5- Vamos a nuestro layout, activity_main.xml, y reemplazamos el "LinealLayout..." por un data binding layout ayudandonos con las sugerencias (Alt+Enter) de Android Studio. 
+6- Nos encierra todo el xml dentro de <layout... y nos crea una sección de <data... por el momento vacia. Todo lo que hicimos lo encierra en una segunda sección de igual jerarquia que <data... llamada <LinearLayout...
+7- Al realizar esto pasos se genero un archivo que se llama "activityMainBinding". El mismo vamos a tener que usarlo ahora dentro de "MainActivity.kt"
+Así: 
+        // Sumo el data binding que incorporé previamente en build.gradle:
+
+        val binding = ActivityMainBinding.inflate(layoutInflater) // Inflar en Android: Formar un layout en memoria. 
+	  setContentView(binding.root)
+
+        // Variables para escuchar los eventos en el layout creadas mediante binding:
+
+        val ageEdit = binding.ageEdit // linkeo mi variable con una view del XML
+        val resultText = binding.resultText
+        val button = binding.button
+
+Hay dos formas de añadir DataBinding al archivo build.gradle:
+
+dataBinding {
+    enabled = true
+}
+Pero recientemente Android sacó en su documentación una nueva forma:
+
+buildFeatures {
+    dataBinding true
+}
+Ambas formas funcionan correctamente y no debería haber problemas por usar una o la otra, pero es bueno que lo sepas por si te topas con cualquiera de ellas sepas que son para lo mismo.
+
+--------------------------------------
+
+Cargar icono a nuestra aplicacion.
+
+La carpeta mipmap es la carpeta donde van los iconos de nuestra aplicación.
+
+app -> res -> mipmap -> ic_launcher / ic_launcher_round / ic_launcher_foreground
+
+En ic_launcher vamos a encontrar nuestros iconos cargados. Y digo nuestros porque debemos cargar varias versiones con distintas resoluciones para de esta forma soportar distintos dispositivos.
+
+En ic_launcher_round lo mismo pero los iconos redondeados en distintas resoluciones tambien. 
+
+Por default, cualquier proyecto android trae la imagen del robot de android. Pero yo puedo cargar y procesar en distintas resoluciones y formas la imagen que quiera.
+
+1- Boton derecho sobre "mipmap" y selecciono "New" -> "Image Asset"
+2- Se abré una sección para cargar la foto que queramos desde "Asset type" y crear multiples versiones. 
+
+
+
+
+
+
+
 
 
 
