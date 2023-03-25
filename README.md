@@ -28,7 +28,7 @@ Instala la aplicación con los siguientes pasos:
 
 Usa esto en tu terminal para clonar tu repositorio:
 ```bash
-git clone https://github.com/Mgobeaalcoba/android_app_mi_edad_canina_kotlin.git
+git clone https://github.com/Mgobeaalcoba/android_kotlin_edad_canina_app.git
 ```
 También puedes descargarla como Zip en caso de que aún no sepas usar Git & Github
 
