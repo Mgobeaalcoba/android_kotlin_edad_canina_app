@@ -223,6 +223,48 @@ Por default, cualquier proyecto android trae la imagen del robot de android. Per
 1- Boton derecho sobre "mipmap" y selecciono "New" -> "Image Asset"
 2- Se abré una sección para cargar la foto que queramos desde "Asset type" y crear multiples versiones. 
 
+-------------------------------------
+
+¿Que es el android manifest? 
+
+Archivo xml que está ubicado dentro de ../app/manifest y que se llama AndroidManifest.xml
+
+Es un resumen de nuesta app. 
+
+Podemos encontrar el nombre, el icono, el icono redondo y también cada una de nuestras activitys.
+
+En este caso, solo tenemos una activity que se llama MainActivity pero la mayoria de las apps tienen mas de una activity. Dentro de la etiqueta de activity en nuestra main nos vamos a encontrar con una etiqueta de <intent-filter... que nos va a indicar que esta activity es la principal o MAIN y es la que se debe ejecutar al iniciar la operacion (LAUNCHER)
+
+Otra cosa fundamental es que los permisos que va a requerir nuestra aplicación los tenemos que declarar aquí en el manifest. 
+
+---------------------------------------
+
+Tipos de layout de diseño en Android: 
+
+Tenemos 4 tipos: 
+
+FrameLayout: Diseñado para mostrar unicamente un "View" a la vez. Si ponemos mas de uno van a tapar a los que estaban primero. (Es el menos utilizado en la industria)
+
+LinearLayout Vertical (Usé en "Mi edad canina"): Al agregar un view se agrega en la parte superior de la pantalla y los proximos que agregamos van abajo del anterior de forma vertical
+
+LinearLayout Horizontal: Lo mismo que el anterior pero se ordenan horizontalmente y si ya no hay espacio van a quedar sesgados. 
+
+RelativeLayout: Podemos poner las views que queramos y donde queramos. Nosotros establecemos la ubicación de nuestras Views. Es el mas versatil. 
+
+1 activity puede tener 1 o muchos layout. Pero tenemos que tratar de tener la menor cantidad posible. Dado que a mas layout mas recursos consumimos de los devices. Por ejemplo, si tenemos que insertar un LinearLayout Horizontal dentro de una LinearLayout Vertical es preferible armar lo mismo en un RelativeLayout. 
+
+Existe un 5 tipo de Layout que es el ConstraintLayout (Nuevo en Android):
+
+Podemos hacer un diseño de forma visual arrastrando los distintos tipos de views que queremos a nuestro layout seleccionando en el margen superior derecho de nuestro archivo "activity_main.xml" la opción de "Design".
+
+En los casos de los 4 primeros layout podemos también hacerlos por diseño, en lugar de por codigo. Pero no es recomendable. En el caso del ConstraintLayout solo se puede hacer por diseño. Ya no por codigo.
+
+Es un tipo de layout mas versatil que el RelativeLayout incluso pero se recomienda usarlo con entre 5 y 10 views. Mas de 10 views debemos ir al relative. 
+
+----------------------------------------
+
+Fin de nuestra primera app interactiva llamada "Mi edad canina"
+
 
 
 
